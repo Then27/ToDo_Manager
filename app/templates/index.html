@@ -1,0 +1,38 @@
+ <!-- 
+ index.html
+ ToDo Application
+ Created by: Thenmozhi Singaravel 
+ -->
+
+<html>
+<link href="static/bootstrap.min.css" rel="stylesheet" media="screen">
+<link href="static/bootstrap.css" rel="stylesheet" media="screen">
+<head>
+  <title>Rackspace ToDo Application</title>
+  <table width="100%">
+	<tr>
+		<td width="40%"> <img src="static/Rackspace.jpg"  class="img-thumbnail" width="250" height="200"> </td>
+		<td width="60%"> <h1><font color="white">ToDo Manager</font></h1>    </td>
+	</tr>
+  </table>
+  
+</head>
+<body>
+
+<body background="static/time1.jpg" width = 100%>
+
+       
+    <h3><center><font color="white">Helping you better manage time...</font></center></h3>
+
+<hr>
+<hr>
+<h3><font color="white"><center>Add Your Task</center></font></h3>
+    <form action="/" method="POST">
+        <center><input type="text" aria-describedby="helpBlock" class="input-small" name="addTask" value="{{request.form.addTask}}" /></center>
+		<center><font color="white"><b> To add a task, press 'Enter'</b></font></center>
+	</form>
+
+
+<script type = "text/javascript" src = "static/bootstrap.min.js" </script>
+</body>
+</html>

@@ -1,0 +1,84 @@
+ <!-- 
+ createTable.html
+ ToDo Application
+ Created by: Thenmozhi Singaravel 
+ -->
+
+<html>
+<link href="static/bootstrap.min.css" rel="stylesheet" media="screen">
+<link href="static/bootstrap.css" rel="stylesheet" media="screen">
+<head>
+  <title>Rackspace ToDo Application</title>
+  <table width="100%">
+	<tr>
+		<td width="40%"> <img src="static/Rackspace.jpg"  class="img-thumbnail" width="250" height="200"> </td>
+		<td width="60%"> <h1><font color="white">ToDo Manager</font></h1>    </td>
+	</tr>
+  </table>
+</head>
+<body>
+
+<body background="static/time1.jpg" width = 100%>
+
+         
+    <h3><center><font color="white">Helping you better manage time...</font></center></h3>
+
+<hr>
+<hr>
+<h3><font color="white"><center>Add Your Task</center></font></h3>
+    <form action="/" method="POST">
+        <center><input type="text" aria-describedby="helpBlock" class="input-small" name="addTask" value="{{request.form.addTask}}" /></center>
+		<center><font color="white"><b> To add a task, press 'Enter'</b></font></center>
+	</form>
+
+<hr>
+
+<!-- Displaying the taskDict in a table format -->
+{% if taskDict.keys()[0] != null %}
+<h3><font color="white">The open items are as follows:</font></h3>
+<table class="table table-hover"  >
+  <tr>
+    <th> <center> <font color="blue">Task Description </font></center> </th>
+    <th> <center> <font color="blue">Created Date </font></center> </th> 
+	<th> <center> <font color="blue">Mark as Completed </font></center> </th>	
+	<th> <center> <font color="blue">Edit Task </font></center> </th>
+	
+  </tr>
+
+{% for i in taskDict.keys() %}
+	<tr>
+	<td> <center><font color="blue"> {{ taskDict[i].desc }} </font></center> </td>
+	<td> <center><font color="blue"> {{ taskDict[i].initDate}} </font></center> </td>
+	<td> <center> <a href="/markCompleted?id={{i}}" class="btn btn-success btn-sm"> Mark as Completed  </a> </center> </td>
+	<td>  <center> <a href="/deleteTask?id={{i}}" class="btn btn-warning btn-sm"> Delete Task </a> </center> </td>
+	</tr>
+{% endfor %}
+</table>
+ {% else %}
+ <div class="alert alert-success" role="alert">Well done! You have completed all your tasks! </div> 
+{% endif %}
+
+<!-- Displaying the complDict in a table format -->
+{% if complDict.keys()[0] != null %}
+<h3><font color="white">The completed items are as follows:</font></h3>
+<table class="table table-hover" >
+  <tr>
+    <th><font color="blue">Task Description</font></th>
+    <th><font color="blue">Created Date</font></th> 
+	<th><font color="blue">Completed Date</font></th>
+  </tr>
+{% for i in complDict.keys() %}
+	<tr>
+	<td><font color="blue">{{ complDict[i].desc }}</font></td>
+	<td><font color="blue">{{ complDict[i].initDate}}</font></td>
+	<td><font color="blue">{{ complDict[i].endDate}}</font></td>
+	
+	</tr>
+{% endfor %}
+</table>
+{% endif %}
+
+
+<script type = "text/javascript" src = "static/bootstrap.min.js" </script>
+</body>
+</html>
