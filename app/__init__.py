@@ -3,7 +3,7 @@
 # Created by: Thenmozhi Singaravel
 
 from flask import Flask, render_template
-from flask import request, redirect, url_for
+from flask import request
 import time
 import urlparse
 app = Flask(__name__)
@@ -21,14 +21,15 @@ class Tasks:
 		self.status = 1
 		self.endDate = finDate
 
+#Creating a list of tasks i.e list of objects of the class Tasks
 taskList = []
 
 #Taking the list and the status as parameters and returning the dictionary
 def convertListToDict (list, stat):
 	dict = {}
-	for i in list:
-		if i.status == stat:
-			dict[len(dict) + 1 ] = i
+	for iterator_list in list:
+		if iterator_list.status == stat:
+			dict[len(dict) + 1 ] = iterator_list
 	return dict
 
 #Function to find a particular task in the taskList and returning the index of the task in the list	
@@ -37,10 +38,10 @@ def findTask (list, value):
 	slNo = 0
 	indexNo = 0
 	indexChoice = 0
-	
-	for i in list:
-		
-		if i.status == 0:
+
+#checking the serial number of the unfinished task with the id of the selected task obtained from webpage	
+	for iterator_list in list:
+		if iterator_list.status == 0:
 			slNo+=1
 			if (slNo == int(value)):
 				slChoice = slNo
@@ -61,20 +62,20 @@ def addButton():
 		
 		#Getting the user input from the request 
 		desc = request.form['addTask'] 
+		#Passing the description and the local date and time as parameters
 		taskList.append(Tasks(desc, time.strftime("%c") ))
-		
-		
+			
 		#Converting the list of unfinished tasks into dictionary, taskDict
 		taskDict = {}
-		for i in taskList:
-			if i.status == 0:
-				taskDict[len(taskDict) + 1 ] = i
+		for iterator_list in taskList:
+			if iterator_list.status == 0:
+				taskDict[len(taskDict) + 1 ] = iterator_list
 
 		#Converting the list of completed tasks into dictionary, complDict
 		complDict = {}
-		for i in taskList:
-			if i.status == 1:
-				complDict[len(complDict) + 1 ] = i
+		for iterator_list in taskList:
+			if iterator_list.status == 1:
+				complDict[len(complDict) + 1 ] = iterator_list
 	
 	return render_template('createTable.html', taskDict= taskDict, complDict= complDict)
     
@@ -102,7 +103,7 @@ def deleteTask():
 	taskDict = {}
 	complDict = {}
 	
-	#getting url values
+	#Getting URL values
 	url_then = request.url
 	valueToDelete = urlparse.parse_qs(urlparse.urlparse(url_then).query)['id'][0]
 

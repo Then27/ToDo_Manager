@@ -5,6 +5,7 @@
  -->
 
 <html>
+<!-- Using the Bootstrap library -->
 <link href="static/bootstrap.min.css" rel="stylesheet" media="screen">
 <link href="static/bootstrap.css" rel="stylesheet" media="screen">
 <head>
@@ -26,13 +27,12 @@
 
 <hr>
 <hr>
+<!-- Getting the task description as input from the user -->
 <h3><font color="white"><center>Add Your Task</center></font></h3>
     <form action="/" method="POST">
-        <center><input type="text" aria-describedby="helpBlock" class="input-small" name="addTask" value="{{request.form.addTask}}" /></center>
+        <center><input type="text" aria-describedby="helpBlock" class="input-small" name="addTask" required value="{{request.form.addTask}}" /></center>
 		<center><font color="white"><b> To add a task, press 'Enter'</b></font></center>
 	</form>
 
-
-<script type = "text/javascript" src = "static/bootstrap.min.js" </script>
 </body>
 </html>
